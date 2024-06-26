@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ECC Client</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --background-light: #f4f4f4;
+            --text-color-light: #333;
+            --accent-color-light: #ff5722;
+            --background-dark: #000000;
+            --text-color-dark: #ffffff;
+            --accent-color-dark: #00bcd4;
+            --contact-color: #800080; /* Purple color for Contact US */
+        }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: var(--background-light);
+            color: var(--text-color-light);
+            margin: 0;
+            padding: 0;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: var(--background-light);
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+            transition: background-color 0.3s;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+
+        h2 {
+            text-align: center;
+            color: var(--accent-color-light);
+            margin-bottom: 20px;
+        }
+		
+        h10 {
+            text-align: left;
+            color: var(--accent-color-light);
+            margin-bottom: 20px;
+        }
+        .version {
+            text-align: center;
+            font-weight: bold;
+            margin-bottom: 20px;
+            color: var(--text-color-light);
+        }
+
+        p {
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        .warning {
+            background-color: #ffdddd;
+            border-left: 6px solid #f44336;
+            padding: 10px;
+            margin-bottom: 20px;
+            border-radius: 5px;
+        }
+
+        .warning h2 {
+            color: #f44336;
+            margin-top: 0;
+        }
+
+        .license, .terms, .contact {
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 5px;
+        }
+
+        .license {
+            background-color: #e0f7fa;
+        }
+
+        .terms {
+            background-color: #f1f8e9;
+        }
+
+        .contact {
+            background-color: #f4e5ff; /* Light purple background */
+        }
+
+        .contact h2 {
+            color: var(--contact-color); /* Purple text color */
+        }
+
+        .download-link {
+            display: inline-block;
+            text-align: center;
+            margin-top: 20px;
+            padding: 15px 30px;
+            background-color: var(--accent-color-light);
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            font-size: 1.2rem;
+            transition: background-color 0.3s;
+        }
+
+        .download-link:hover {
+            background-color: #e64a19;
+        }
+		
+        .discription {
+            text-align: left;
+            font-weight: bold;
+            margin-bottom: 20px;
+            color: var(--text-color-light);
+        }		
+		<!-- Download Banner-->
+        .hdownload {
+            background-color: #ffdddd;
+            border-left: 6px solid #f44336;
+            padding: 10px;
+            margin-bottom: 20px;
+            border-radius: 5px;
+        }
+
+        .hdownload h2 {
+            color: #f44336;
+            margin-top: 0;
+        }
+		
+        .footer {
+            text-align: center;
+            padding: 10px;
+            background-color: #333;
+            color: #fff;
+            margin-top: 20px;
+            border-radius: 0 0 10px 10px;
+        }
+
+        .dark-mode-toggle {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-color-light);
+        }
+
+        .dark-mode-toggle label {
+            position: relative;
+            display: inline-block;
+            width: 40px;
+            height: 20px;
+            background-color: #ccc;
+            border-radius: 20px;
+            cursor: pointer;
+        }
+
+        .dark-mode-toggle label:after {
+            content: '';
+            position: absolute;
+            width: 16px;
+            height: 16px;
+            background-color: #fff;
+            border-radius: 50%;
+            top: 2px;
+            left: 2px;
+            transition: transform 0.3s ease;
+        }
+
+        .dark-mode-toggle input {
+            display: none;
+        }
+
+        .dark-mode-toggle input:checked + label {
+            background-color: #333;
+        }
+
+        .dark-mode-toggle input:checked + label:after {
+            transform: translateX(20px);
+        }
+
+        /* Dark Mode Styles */
+        body.dark-mode {
+            background-color: var(--background-dark);
+            color: var(--text-color-dark);
+        }
+
+        body.dark-mode .container {
+            background-color: var(--background-dark);
+        }
+
+        body.dark-mode h1, body.dark-mode h2 {
+            color: var(--accent-color-dark);
+        }
+
+        body.dark-mode p, body.dark-mode .license, body.dark-mode .terms, body.dark-mode .contact {
+            color: var(--text-color-dark);
+        }
+
+        body.dark-mode .warning {
+            background-color: #331f1f;
+            border-left-color: #f44336;
+            color: var(--text-color-dark);
+        }
+
+        body.dark-mode .footer {
+            background-color: #111;
+        }
+
+        body.dark-mode .download-link {
+            background-color: var(--accent-color-dark);
+        }
+
+        body.dark-mode .download-link:hover {
+            background-color: #006d87;
+        }
+
+        body.dark-mode .license {
+            background-color: #002428;
+        }
+
+        body.dark-mode .terms {
+            background-color: #2e4d2e;
+        }
+        body.dark-mode .contact {
+            background-color: #2a1f2e;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>ECC - Elysion Celestial Code</h1>
+		<p class="version"> DDoS, 랜섬웨어, Wifite와 같은 강력한 해킹 도구입니다.</p>
+
+        <div class="warning">
+            <h2>경고:</h2>
+            <p><strong>불법 사용: </strong> 무단 사용은 불법이며 법에 의해 처벌을 받을 수 있습니다.</p>
+            <p><strong>윤리적 사용:</strong>  허가를 받은 보안 테스트에만 사용하십시오.</p>
+            <p><strong>보복 위험:</strong>오용으로 인해 보복 및 법적 조치를 받을 수 있습니다.</p>
+            <p><strong>개인 책임: </strong> 오용으로 인한 손해에 대한 책임은 귀하에게 있습니다.
+            <p><strong>보안 위험: </strong> 맬웨어 감염을 방지하기 위해 강력한 보안을 보장합니다.
+            <p><strong>"있는 그대로" 라이센스</strong> tools는 보증 없이 제공됩니다. 자신의 책임하에 사용하십시오.</p>
+        </div>
+
+        <div class="license">
+            <h2>MIT License (GNU)</h2>
+            <p>&copy; 2024 ECC</p>
+            <p><strong>사용법:</strong> 교육 목적으로만 사용하십시오</p>
+            <h3>라이선스 (GNU):</h3>
+            <p>저작권 표시가 포함된 경우 이 소프트웨어를 사용, 복사, 수정 및 배포할 수 있는 권한이 부여됩니다.</p>
+            <p>이 소프트웨어는 어떠한 종류의 보증 없이 "있는 그대로" 제공됩니다.</p>
+        </div>
+
+        <div class="terms">
+            <h2>ECC 이용약관</h2>
+            <h3>1. 소개</h3>
+            <p> ECC를 사용함으로써 귀하는 본 약관에 동의하게 됩니다.</p>
+            <h3>2.목적</h3>
+            <p>통제된 환경에서 교육용으로만 사용됩니다.</p>
+            <h3>3.  윤리적 사용</h3>
+            <p>불법적인 활동에 사용하지 마십시오. 허용된 곳에서만 사용하십시오</p>
+            <h3>4.  법적 준수</h3>
+            <p>모든 해당 법률을 따르십시오</p>
+            <h3>5. 책임</h3>
+            <p>ECC는 보증 없이 "있는 그대로" 제공됩니다. ECC와 그 창작자는 어떠한 손해및 피해에 대해서도 책임을 지지 않습니다.</p>
+            <h3>6.보안 및 개인정보 보호</h3>
+            <p>다른 사람의 보안이나 개인정보를 침해하지 마십시오.</p>
+            <h3>7.사용자 책임</h3>
+            <p>로그인 정보의 기밀을 유지하십시오. 귀하는 귀하의 행동에 대한 책임이 있습니다.</p>
+            <p>ECC를 사용함으로써 귀하는 위 약관에 동의하게 됩니다</p>
+        </div>
+
+        <div class="contact">
+            <h2>Contact US</h2>
+            <p><strong>Email:</strong> soilpcmail@gmail.com</p>
+            <p><strong>Instagram:</strong> SOIL-PC</p>
+			<p><strong>Telegram:</strong> SOIL-PC</p>
+            <p><strong>BTC Donation:</strong> bc1q4wxzylndr4xayj9h8u3zldufs8d43m87rqt0lp</p>
+        </div>
+		
+        <div class="dhownload">
+            <h10><strong></h10>
+            <p><strong>To download ECC, you need a passkey to unzip the ECC client. Please contact the admin to receive the passkey.</p>
+        </div>		
+
+		<!-- download discription -->
+        <a class="download-link" href="https://soil-pc.github.io" download>Download ECC client</a> 
+    </div>
+    <div class="footer">
+        &copy; 2024 ECC | SOIL-PC 
+    </div>
+
+    <div class="dark-mode-toggle">
+        <input type="checkbox" id="mode-toggle">
+        <label for="mode-toggle" aria-label="Toggle Dark Mode"></label>
+        <span style="margin-left: 10px;">Switch to Dark Mode</span>
+    </div>
+
+    <script>
+        const toggle = document.getElementById('mode-toggle');
+        const body = document.body;
+
+        toggle.addEventListener('change', () => {
+            body.classList.toggle('dark-mode', toggle.checked);
+        });
+    </script>
+</body>
+</html>
